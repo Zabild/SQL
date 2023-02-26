@@ -1,0 +1,28 @@
+#In this SQL, I'm querying a database that is holding Superbowl data in order to answer questions about the data
+
+--What team has won the most superbowls?
+SELECT *, max(winner) 
+AS Most_wins 
+FROM superbowls;
+
+--What States have had teams win by over 40 points?
+SELECT State, City, count(winner) 
+FROM superbowls
+GROUP BY State 
+HAVING winner_pts > 40;
+
+--List the winning teams along with a declaration of how much they won by
+SELECT Winner, winner_pts,
+CASE
+    WHEN winner_pts < 20 AND winner_pts < 0 THEN "Won"
+    WHEN winner_pts > 20 OR winner_pts = 20 THEN "Overwhelming victory"
+    ELSE "Victory"
+END as "Victory_Status"
+FROM superbowls;
+
+-- What years did teams have over 30 point victories?
+SELECT date, winner, winner_pts 
+FROM superbowls
+GROUP BY date
+HAVING winner_pts > 30
+ORDER BY winner_pts asc;
