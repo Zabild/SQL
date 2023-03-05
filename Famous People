@@ -1,0 +1,55 @@
+/* Create table about the people and what they do here */
+CREATE TABLE Famous_People (id INTEGER PRIMARY KEY AUTOINCREMENT,
+First_name TEXT,
+Last_name TEXT,
+Birthdate TEXT);
+
+INSERT INTO Famous_People (first_name, last_Name, birthdate)
+VALUES ("Chris", "Evans", "41");
+INSERT INTO Famous_People (first_name, last_Name, birthdate)
+VALUES ("Hank", "Williams", "29");
+INSERT INTO Famous_People (first_name, last_Name, birthdate)
+VALUES ("Anna", "Pavlova", "49");
+INSERT INTO Famous_People (first_name, last_Name, birthdate)
+VALUES ("Fabio", "Lazoni", "63");
+INSERT INTO Famous_People (first_name, last_Name, birthdate)
+VALUES ("Robert", "Downey JR.", "57");
+INSERT INTO Famous_People (first_name, last_Name, birthdate)
+VALUES ("Channing", "Tatum", "42");
+INSERT INTO Famous_People (first_name, last_Name, birthdate)
+VALUES ("Bob", "Dylan", "81");
+INSERT INTO Famous_People (first_name, last_Name, birthdate)
+VALUES ("Cindy", "Crawford", "57");
+
+CREATE TABLE Profession
+(id INTEGER PRIMARY KEY AUTOINCREMENT,
+Person_ID Integer,
+Title TEXT);
+
+INSERT INTO Profession (Person_id, Title) VALUES (1, "Actor");
+INSERT INTO Profession (Person_id, Title) VALUES (2, "Musician");
+INSERT INTO Profession (Person_id, Title) VALUES (3, "Dancer");
+INSERT INTO Profession (Person_id, Title) VALUES (4, "Model");
+INSERT INTO Profession (Person_id, Title) VALUES (5, "Actor");
+INSERT INTO Profession (Person_id, Title) VALUES (6, "Actor");
+INSERT INTO Profession (Person_id, Title) VALUES (7, "Musician");
+INSERT INTO Profession (Person_id, Title) VALUES (8, "Model");
+
+--/*What are the occupations of famous people?*/
+Select Famous_People.First_Name, Famous_People.Last_Name, Profession.Title
+From Famous_People
+LEFT OUTER JOIN Profession
+ON Profession.id = Famous_People.id;
+
+--/* Which actors are under the age of 50*/
+SELECT Famous_People.First_Name, Famous_People.Last_Name, Profession.Title, Famous_People.Birthdate
+FROM Famous_People
+JOIN Profession
+ON Profession.id = Famous_People.id
+WHERE Profession.title = "Actor"
+GROUP BY Birthdate
+HAVING Birthdate < "50";
+
+
+
+
