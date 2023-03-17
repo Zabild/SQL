@@ -33,4 +33,14 @@ FROM BIT_DB.Spotifydata
 ORDER BY popularity desc
 LIMIT 5;
 
---
+--What is the most popular song with the fastest tempo
+SELECT track_name, popularity AS  'Most_Popular', liveness
+FROM BIT_DB.Spotifydata
+ORDER BY spotifydata.liveness desc, spotifydata.popularity desc
+LIMIT 1;
+
+--What is the average duration of Doja Cats songs
+SELECT artist_name, AVG(duration_ms) AS 'Average_Duration'
+FROM BIT_DB.Spotifydata
+WHERE artist_name = 'Doja Cat'
+
